@@ -7,57 +7,79 @@
 //
 
 import UIKit
+import RealmSwift
 
-class MainViewController: UITableViewController {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var places = Places.getPlace()
+    @IBOutlet var tableView: UITableView!
+    var places: Results<Places>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        places = realm.objects(Places.self)
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return places.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return places.isEmpty ? 0 : places.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let place = places[indexPath.row]
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
+            StorageManager.deleteObject(place)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+//        let editAction = UIContextualAction(style: .destructive, title: "Edit") { (_, _, _) in
+//            StorageManager.deleteObject(place)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+        let swipeActions = UISwipeActionsConfiguration (actions: [deleteAction])
+        deleteAction.backgroundColor = .red
+//        editAction.backgroundColor = .blue
+        return swipeActions
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         let place = places[indexPath.row]
         cell.nameLabel.text = place.name
         cell.typeLabel.text = place.type
         cell.locationLabel.text = place.location
-        if place.image == nil {
-            cell.imageOfPlace.image = UIImage(named: place.restaurantImage!)
-        } else {cell.imageOfPlace.image = place.image}
-        
+        cell.imageOfPlace.image = UIImage(data: place.imageData!)
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
 
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEditScreen" {
+            guard let indexPatch = tableView.indexPathForSelectedRow else {return}
+            let place = places[indexPatch.row]
+            let newPlaceVC = segue.destination as! NewPlaceViewController
+            newPlaceVC.currentPlace = place
+        }
+    }
+    
+    
     @IBAction func unwindSegue (_ segue: UIStoryboardSegue) {
         guard let newPlaceVC = segue.source as? NewPlaceViewController else {return}
-        newPlaceVC.saveNewPlace()
-        places.append(newPlaceVC.newPlace!)
+        newPlaceVC.savePlace()
         tableView.reloadData()
     }
 

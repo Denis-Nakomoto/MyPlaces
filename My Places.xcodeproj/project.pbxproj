@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90BC2E624A9B35E0011C9ED /* saveToDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BC2E524A9B35E0011C9ED /* saveToDataBase.swift */; };
 		B9211FEB24A0EF5C0005FE74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9211FEA24A0EF5C0005FE74 /* AppDelegate.swift */; };
 		B9211FED24A0EF5C0005FE74 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9211FEC24A0EF5C0005FE74 /* SceneDelegate.swift */; };
 		B9211FF224A0EF5C0005FE74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9211FF024A0EF5C0005FE74 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		1C3B4FC1C046F8923A52CE80 /* Pods-My Places.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Places.debug.xcconfig"; path = "Target Support Files/Pods-My Places/Pods-My Places.debug.xcconfig"; sourceTree = "<group>"; };
 		3F9423E363214A1711F507E4 /* Pods_My_Places.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Places.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79715CD599314F2604A4A309 /* Pods-My Places.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My Places.release.xcconfig"; path = "Target Support Files/Pods-My Places/Pods-My Places.release.xcconfig"; sourceTree = "<group>"; };
+		B90BC2E524A9B35E0011C9ED /* saveToDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveToDataBase.swift; sourceTree = "<group>"; };
 		B9211FE724A0EF5C0005FE74 /* My Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9211FEA24A0EF5C0005FE74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9211FEC24A0EF5C0005FE74 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				B9211FF524A0EF5C0005FE74 /* LaunchScreen.storyboard */,
 				B9211FF824A0EF5C0005FE74 /* Info.plist */,
 				B921200424A4D41B0005FE74 /* NewPlaceViewController.swift */,
+				B90BC2E524A9B35E0011C9ED /* saveToDataBase.swift */,
 			);
 			path = "My Places";
 			sourceTree = "<group>";
@@ -97,7 +100,6 @@
 				1C3B4FC1C046F8923A52CE80 /* Pods-My Places.debug.xcconfig */,
 				79715CD599314F2604A4A309 /* Pods-My Places.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,6 +221,7 @@
 				B9211FFF24A0EFCC0005FE74 /* MainViewController.swift in Sources */,
 				B921200524A4D41B0005FE74 /* NewPlaceViewController.swift in Sources */,
 				B9211FEB24A0EF5C0005FE74 /* AppDelegate.swift in Sources */,
+				B90BC2E624A9B35E0011C9ED /* saveToDataBase.swift in Sources */,
 				B921200124A2D6540005FE74 /* CustomTableViewCell.swift in Sources */,
 				B9211FED24A0EF5C0005FE74 /* SceneDelegate.swift in Sources */,
 				B921200324A482C00005FE74 /* Places.swift in Sources */,
