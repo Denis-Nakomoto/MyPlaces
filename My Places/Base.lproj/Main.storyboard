@@ -185,9 +185,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hZV-7Y-Cga">
-                                <rect key="frame" x="0.0" y="44" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZV-7Y-Cga">
+                                <rect key="frame" x="0.0" y="118" width="414" height="778"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="85" id="cCv-Gi-c4A" customClass="CustomTableViewCell" customModule="My_Places" customModuleProvider="target">
@@ -254,12 +253,35 @@
                                     <outlet property="delegate" destination="LE5-7G-fj7" id="MhP-I1-bBe"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VAr-SJ-tzV">
+                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
+                                <segments>
+                                    <segment title="Date"/>
+                                    <segment title="Name"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlAction:" destination="LE5-7G-fj7" eventType="valueChanged" id="vsa-gB-E7e"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VAr-SJ-tzV" firstAttribute="top" secondItem="GI2-uk-nDO" secondAttribute="top" id="1ZP-b5-drY"/>
+                            <constraint firstItem="VAr-SJ-tzV" firstAttribute="trailing" secondItem="GI2-uk-nDO" secondAttribute="trailing" id="5rZ-CX-YFN"/>
+                            <constraint firstItem="hZV-7Y-Cga" firstAttribute="leading" secondItem="GI2-uk-nDO" secondAttribute="leading" id="Y2N-Mz-l0H"/>
+                            <constraint firstItem="hZV-7Y-Cga" firstAttribute="top" secondItem="GI2-uk-nDO" secondAttribute="top" constant="30" id="ZGp-h6-qao"/>
+                            <constraint firstItem="VAr-SJ-tzV" firstAttribute="leading" secondItem="GI2-uk-nDO" secondAttribute="leading" id="dbr-1J-G15"/>
+                            <constraint firstAttribute="bottom" secondItem="hZV-7Y-Cga" secondAttribute="bottom" id="ntO-FE-Hyz"/>
+                            <constraint firstItem="hZV-7Y-Cga" firstAttribute="trailing" secondItem="GI2-uk-nDO" secondAttribute="trailing" id="pZe-FA-dt7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GI2-uk-nDO"/>
                     </view>
                     <navigationItem key="navigationItem" title="My places" largeTitleDisplayMode="never" id="KKm-O6-FB9">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.up" catalog="system" id="UqY-Ny-vTJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.down" catalog="system" id="UqY-Ny-vTJ">
+                            <connections>
+                                <action selector="inversedSortingAction:" destination="LE5-7G-fj7" id="uAc-zR-TWB"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HS1-tT-0G0">
                             <connections>
                                 <segue destination="g2Q-ct-I0c" kind="presentation" id="zRV-4V-Bhz"/>
@@ -267,12 +289,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="reversedSorting" destination="UqY-Ny-vTJ" id="TpZ-Pz-Pcy"/>
+                        <outlet property="sortSegmentedControl" destination="VAr-SJ-tzV" id="rkP-7W-6fE"/>
                         <outlet property="tableView" destination="hZV-7Y-Cga" id="U09-4Q-0wN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCg-Yp-xhg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="-106"/>
+            <point key="canvasLocation" x="744.92753623188412" y="-106.47321428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UD4-FG-PzJ">
@@ -321,6 +345,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
-        <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="arrow.down" catalog="system" width="120" height="128"/>
     </resources>
 </document>
