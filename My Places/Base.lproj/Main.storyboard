@@ -144,6 +144,23 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="0Yd-li-JKm">
+                                        <rect key="frame" x="0.0" y="503" width="414" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Yd-li-JKm" id="Jhw-bU-YDJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kfT-v2-Nia" customClass="RatingController" customModule="My_Places" customModuleProvider="target">
+                                                    <rect key="frame" x="81" y="48" width="252" height="44"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kfT-v2-Nia" firstAttribute="centerX" secondItem="Jhw-bU-YDJ" secondAttribute="centerX" id="fln-t8-KDK"/>
+                                                <constraint firstItem="kfT-v2-Nia" firstAttribute="centerY" secondItem="Jhw-bU-YDJ" secondAttribute="centerY" id="vwm-bw-gFW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -175,7 +192,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeW-Df-RKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="PPs-Mx-e1z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="-106"/>
+            <point key="canvasLocation" x="2182.608695652174" y="-106.47321428571428"/>
         </scene>
         <!--My places-->
         <scene sceneID="Xa0-zq-DHy">
@@ -259,6 +276,7 @@
                                     <segment title="Date"/>
                                     <segment title="Name"/>
                                 </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentedControlAction:" destination="LE5-7G-fj7" eventType="valueChanged" id="vsa-gB-E7e"/>
                                 </connections>
