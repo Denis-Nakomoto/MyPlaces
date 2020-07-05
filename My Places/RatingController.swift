@@ -30,8 +30,17 @@ import UIKit
             setupButton()
         }
     }
+    let emptyStar = UIImage(systemName: "star", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .thin))
+    let filledStar = UIImage(systemName: "star.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .thin))
+    let highlightedStar = UIImage(systemName: "star.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .thin))
+    
+    
     private var ratingButtons = [UIButton]()
-    var rating = 0
+    var rating = 0{
+        didSet {
+            setupSelectedRatingState()
+        }
+    }
     
     private func setupButton(){
         for button in ratingButtons {
@@ -42,7 +51,10 @@ import UIKit
         
         for _ in 0..<starCount {
             let button = UIButton()
-            button.backgroundColor = .red
+            button.setImage(emptyStar, for: .normal)
+            button.setImage(filledStar, for: .selected)
+            button.setImage(highlightedStar, for: .highlighted)
+            button.setImage(highlightedStar, for: [.selected, .highlighted])
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalToConstant: starSize.width).isActive = true
             button.heightAnchor.constraint(equalToConstant: starSize.height).isActive = true
@@ -50,9 +62,21 @@ import UIKit
             addArrangedSubview(button)
             ratingButtons.append(button)
         }
+        setupSelectedRatingState()
     }
     
     @objc func buttonAction(button: UIButton){
-        print("Button pressed")
+        guard let index = ratingButtons.firstIndex(of: button) else {return}
+        let selectedRating = index + 1
+        if selectedRating == rating {
+            rating = 0
+        } else {
+            rating = selectedRating
+        }
+    }
+    private func setupSelectedRatingState() {
+        for (index, button) in ratingButtons.enumerated() {
+            button.isSelected = index < rating
+        }
     }
 }
