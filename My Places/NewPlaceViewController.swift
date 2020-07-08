@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Cosmos
 
 class NewPlaceViewController: UITableViewController {
     var imageIsChanged = false
-    var currentPlace: Places?
+    var currentPlace: Places!
     @IBOutlet weak var placeImage: UIImageView!
     @IBOutlet var placeName: UITextField!
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var ratingControl: RatingController!
+    @IBOutlet var cosmosView: CosmosView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +72,7 @@ class NewPlaceViewController: UITableViewController {
             image = UIImage(systemName: "photo")
         }
         let imageData = image?.pngData()
-        let newPlace = Places(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: imageData)
+        let newPlace = Places(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: imageData, rating: Double(cosmosView.rating))
         
         if currentPlace != nil {
             try! realm.write {
@@ -77,6 +80,7 @@ class NewPlaceViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
+                currentPlace.rating = newPlace.rating
             }
         } else {
            StorageManager.saveObject(newPlace)
@@ -94,6 +98,8 @@ class NewPlaceViewController: UITableViewController {
         placeName.text = currentPlace?.name
         placeLocation.text = currentPlace?.location
         placeType.text = currentPlace?.type
+        cosmosView.rating = currentPlace.rating
+            
         }
         
     }

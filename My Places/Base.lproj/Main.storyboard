@@ -12,7 +12,7 @@
             <objects>
                 <tableViewController id="ZSN-ee-Ha6" customClass="NewPlaceViewController" customModule="My_Places" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wSy-Cb-sIQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
@@ -151,14 +151,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kfT-v2-Nia" customClass="RatingController" customModule="My_Places" customModuleProvider="target">
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kfT-v2-Nia" customClass="RatingController" customModule="My_Places" customModuleProvider="target">
                                                     <rect key="frame" x="81" y="48" width="252" height="44"/>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="270" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="RMv-4Y-vPt" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="72" y="45" width="270" height="50"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                            <real key="value" value="50"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="RMv-4Y-vPt" firstAttribute="centerY" secondItem="Jhw-bU-YDJ" secondAttribute="centerY" id="Khv-n0-rZk"/>
                                                 <constraint firstItem="kfT-v2-Nia" firstAttribute="centerX" secondItem="Jhw-bU-YDJ" secondAttribute="centerX" id="fln-t8-KDK"/>
+                                                <constraint firstItem="RMv-4Y-vPt" firstAttribute="centerX" secondItem="Jhw-bU-YDJ" secondAttribute="centerX" id="g78-1w-dtm"/>
                                                 <constraint firstItem="kfT-v2-Nia" firstAttribute="centerY" secondItem="Jhw-bU-YDJ" secondAttribute="centerY" id="vwm-bw-gFW"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="kfT-v2-Nia"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -182,10 +198,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cosmosView" destination="RMv-4Y-vPt" id="oW2-ch-Urm"/>
                         <outlet property="placeImage" destination="FYX-oN-FLF" id="ng8-YT-bUo"/>
                         <outlet property="placeLocation" destination="hws-sq-75e" id="vON-lg-9aV"/>
                         <outlet property="placeName" destination="vJC-P4-KjL" id="h1O-np-Kcs"/>
                         <outlet property="placeType" destination="zVR-Ec-NHi" id="130-hs-u0X"/>
+                        <outlet property="ratingControl" destination="kfT-v2-Nia" id="3xX-3i-5qr"/>
                         <outlet property="saveButton" destination="TEZ-SO-8Oc" id="jz2-LB-0RN"/>
                     </connections>
                 </tableViewController>
@@ -221,7 +239,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qdN-6l-Svg">
-                                                    <rect key="frame" x="99" y="8" width="299" height="69"/>
+                                                    <rect key="frame" x="99" y="8" width="171" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIT-Yj-dbK">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="23"/>
@@ -246,19 +264,47 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="ht5-IE-BLb" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="280" y="32.5" width="120" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                            <real key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" placeholderIntrinsicWidth="164" placeholderIntrinsicHeight="45" distribution="fillEqually" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="19E-1Q-Q7L" customClass="MainScreenRating" customModule="My_Places" customModuleProvider="target">
+                                                    <rect key="frame" x="230" y="20" width="164" height="45"/>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="19E-1Q-Q7L" firstAttribute="leading" secondItem="JEz-wx-pJ5" secondAttribute="leading" constant="230" id="0SM-CS-e7W"/>
                                                 <constraint firstItem="RwO-67-Ewz" firstAttribute="leading" secondItem="JEz-wx-pJ5" secondAttribute="leading" constant="16" id="7WN-c1-1eP"/>
+                                                <constraint firstAttribute="trailing" secondItem="19E-1Q-Q7L" secondAttribute="trailing" constant="20" id="FQ3-7E-PKa"/>
+                                                <constraint firstItem="ht5-IE-BLb" firstAttribute="leading" secondItem="qdN-6l-Svg" secondAttribute="trailing" constant="10" id="J3I-Ej-xbj"/>
+                                                <constraint firstItem="19E-1Q-Q7L" firstAttribute="top" secondItem="JEz-wx-pJ5" secondAttribute="topMargin" constant="9" id="PWK-6o-QmM"/>
                                                 <constraint firstAttribute="bottom" secondItem="qdN-6l-Svg" secondAttribute="bottom" constant="8" id="Tuw-7S-Yk7"/>
-                                                <constraint firstAttribute="trailing" secondItem="qdN-6l-Svg" secondAttribute="trailing" constant="16" id="exr-h6-k9Z"/>
                                                 <constraint firstItem="RwO-67-Ewz" firstAttribute="top" secondItem="JEz-wx-pJ5" secondAttribute="top" constant="8" id="hvm-fv-mEv"/>
                                                 <constraint firstItem="qdN-6l-Svg" firstAttribute="top" secondItem="JEz-wx-pJ5" secondAttribute="top" constant="8" id="jvi-Nt-sTe"/>
+                                                <constraint firstItem="ht5-IE-BLb" firstAttribute="centerY" secondItem="JEz-wx-pJ5" secondAttribute="centerY" id="r20-j5-8bs"/>
+                                                <constraint firstItem="19E-1Q-Q7L" firstAttribute="centerY" secondItem="JEz-wx-pJ5" secondAttribute="centerY" id="rFd-Of-jgd"/>
                                                 <constraint firstItem="qdN-6l-Svg" firstAttribute="leading" secondItem="RwO-67-Ewz" secondAttribute="trailing" constant="18" id="uAr-MB-xf2"/>
+                                                <constraint firstAttribute="trailing" secondItem="ht5-IE-BLb" secondAttribute="trailing" constant="14" id="vL7-ZD-MBu"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="19E-1Q-Q7L"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cosmosView" destination="ht5-IE-BLb" id="XkL-OY-hmK"/>
                                             <outlet property="imageOfPlace" destination="RwO-67-Ewz" id="1mM-8D-VST"/>
                                             <outlet property="locationLabel" destination="X5U-Sn-mBM" id="9VP-dm-ac9"/>
+                                            <outlet property="mainScreenRating" destination="19E-1Q-Q7L" id="Rue-9G-1ox"/>
                                             <outlet property="nameLabel" destination="JIT-Yj-dbK" id="m5k-Q5-oxW"/>
                                             <outlet property="typeLabel" destination="cjN-Tn-lo1" id="9Gh-dw-c1M"/>
                                             <segue destination="ZSN-ee-Ha6" kind="show" identifier="showEditScreen" id="M9J-MI-H3P"/>
@@ -359,7 +405,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Fi-aJ-Mdd"/>
+        <segue reference="M9J-MI-H3P"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>

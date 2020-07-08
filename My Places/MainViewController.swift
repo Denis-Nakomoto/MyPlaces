@@ -11,6 +11,7 @@ import RealmSwift
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    
     private var searchController = UISearchController(searchResultsController: nil)
     private var filteredPlaces: Results<Places>!
     private var places: Results<Places>!
@@ -59,13 +60,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             StorageManager.deleteObject(place)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-//        let editAction = UIContextualAction(style: .destructive, title: "Edit") { (_, _, _) in
-//            StorageManager.deleteObject(place)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
         let swipeActions = UISwipeActionsConfiguration (actions: [deleteAction])
         deleteAction.backgroundColor = .red
-//        editAction.backgroundColor = .blue
         return swipeActions
     }
 
@@ -86,9 +82,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.typeLabel.text = place.type
         cell.locationLabel.text = place.location
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        cell.imageOfPlace.clipsToBounds = true
-
+        //Рейтинг на главном экране
+        
+        cell.cosmosView.rating = place.rating
         return cell
     }
 

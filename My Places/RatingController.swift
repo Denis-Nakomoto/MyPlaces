@@ -36,7 +36,7 @@ import UIKit
     
     
     private var ratingButtons = [UIButton]()
-    var rating = 0{
+    var rating = 0 {
         didSet {
             setupSelectedRatingState()
         }

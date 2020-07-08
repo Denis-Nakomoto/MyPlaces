@@ -18,6 +18,7 @@
 		B921200324A482C00005FE74 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921200224A482C00005FE74 /* Places.swift */; };
 		B921200524A4D41B0005FE74 /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B921200424A4D41B0005FE74 /* NewPlaceViewController.swift */; };
 		B95CD1E524AF090E001D8724 /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95CD1E424AF090E001D8724 /* RatingController.swift */; };
+		B9611F2124B4420E00655BC6 /* MainScreenRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9611F2024B4420E00655BC6 /* MainScreenRating.swift */; };
 		BA1531B1CEA7ADB4D472FF08 /* Pods_My_Places.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F9423E363214A1711F507E4 /* Pods_My_Places.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		B921200224A482C00005FE74 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		B921200424A4D41B0005FE74 /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		B95CD1E424AF090E001D8724 /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
+		B9611F2024B4420E00655BC6 /* MainScreenRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRating.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			children = (
 				B9211FEA24A0EF5C0005FE74 /* AppDelegate.swift */,
 				B9211FFE24A0EFCC0005FE74 /* MainViewController.swift */,
+				B9611F2024B4420E00655BC6 /* MainScreenRating.swift */,
 				B95CD1E424AF090E001D8724 /* RatingController.swift */,
 				B921200224A482C00005FE74 /* Places.swift */,
 				B921200024A2D6540005FE74 /* CustomTableViewCell.swift */,
@@ -223,6 +226,7 @@
 			files = (
 				B9211FFF24A0EFCC0005FE74 /* MainViewController.swift in Sources */,
 				B921200524A4D41B0005FE74 /* NewPlaceViewController.swift in Sources */,
+				B9611F2124B4420E00655BC6 /* MainScreenRating.swift in Sources */,
 				B95CD1E524AF090E001D8724 /* RatingController.swift in Sources */,
 				B9211FEB24A0EF5C0005FE74 /* AppDelegate.swift in Sources */,
 				B90BC2E624A9B35E0011C9ED /* saveToDataBase.swift in Sources */,
