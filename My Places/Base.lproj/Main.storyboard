@@ -12,7 +12,7 @@
             <objects>
                 <tableViewController id="ZSN-ee-Ha6" customClass="NewPlaceViewController" customModule="My_Places" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wSy-Cb-sIQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
@@ -30,9 +30,24 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                     <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYw-D1-gEr">
+                                                    <rect key="frame" x="344" y="180" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="Qzl-Cm-9hd"/>
+                                                        <constraint firstAttribute="height" constant="50" id="kog-Gc-zL9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                                    <size key="titleShadowOffset" width="50" height="50"/>
+                                                    <state key="normal" image="map" catalog="system"/>
+                                                    <connections>
+                                                        <segue destination="t6Y-qX-Tdv" kind="presentation" identifier="showMap" id="vMC-2G-VNP"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FYX-oN-FLF" firstAttribute="leading" secondItem="TIH-Wc-HmD" secondAttribute="leading" id="D7g-hk-bnJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="MYw-D1-gEr" secondAttribute="trailing" constant="20" id="Of1-9F-k3Y"/>
+                                                <constraint firstAttribute="bottom" secondItem="MYw-D1-gEr" secondAttribute="bottom" constant="20" id="QOY-Ng-cpJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="FYX-oN-FLF" secondAttribute="trailing" id="Vg2-az-TiN"/>
                                                 <constraint firstAttribute="bottom" secondItem="FYX-oN-FLF" secondAttribute="bottom" id="pha-FX-GeT"/>
                                                 <constraint firstItem="FYX-oN-FLF" firstAttribute="top" secondItem="TIH-Wc-HmD" secondAttribute="top" id="qF0-eN-f7p"/>
@@ -210,7 +225,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeW-Df-RKr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="PPs-Mx-e1z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2182.608695652174" y="-106.47321428571428"/>
+            <point key="canvasLocation" x="1445" y="-100"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Fyj-Vn-d97">
+            <objects>
+                <viewController id="t6Y-qX-Tdv" customClass="MapViewController" customModule="My_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YMM-jk-a8C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOY-W3-ylS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1q3-Pb-qXy">
+                                <rect key="frame" x="370" y="87" width="24" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="cancel" destination="CHD-KO-0U9" eventType="touchUpInside" id="V9i-B5-bzS"/>
+                                    <action selector="cancel" destination="t6Y-qX-Tdv" eventType="touchUpInside" id="kyk-Ww-bqu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DOY-W3-ylS" firstAttribute="top" secondItem="YMM-jk-a8C" secondAttribute="top" id="Gll-QY-but"/>
+                            <constraint firstAttribute="bottom" secondItem="DOY-W3-ylS" secondAttribute="bottom" id="cOr-cA-0lR"/>
+                            <constraint firstItem="DOY-W3-ylS" firstAttribute="trailing" secondItem="OGv-by-50q" secondAttribute="trailing" id="fNm-qE-zUe"/>
+                            <constraint firstItem="DOY-W3-ylS" firstAttribute="leading" secondItem="OGv-by-50q" secondAttribute="leading" id="htj-Lb-ZgY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OGv-by-50q"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="DOY-W3-ylS" id="GI6-hg-XA4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zza-66-wrz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="CHD-KO-0U9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2146" y="-100"/>
         </scene>
         <!--My places-->
         <scene sceneID="Xa0-zq-DHy">
@@ -379,7 +433,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFT-3T-gg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="-106"/>
+            <point key="canvasLocation" x="745" y="-796"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eda-wk-stc">
@@ -401,14 +455,16 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0r-r6-uXA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1464" y="-106"/>
+            <point key="canvasLocation" x="1445" y="-796"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="M9J-MI-H3P"/>
+        <segue reference="7Fi-aJ-Mdd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Photo" width="195" height="196"/>
         <image name="arrow.down" catalog="system" width="120" height="128"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
+        <image name="map" catalog="system" width="128" height="113"/>
     </resources>
 </document>

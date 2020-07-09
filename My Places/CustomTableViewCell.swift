@@ -20,5 +20,9 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet var mainScreenRating: MainScreenRating!
-    @IBOutlet var cosmosView: CosmosView!
+    @IBOutlet var cosmosView: CosmosView!{
+        didSet{
+            cosmosView.settings.updateOnTouch = false
+        }
+    }
 }

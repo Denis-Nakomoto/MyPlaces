@@ -82,8 +82,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.typeLabel.text = place.type
         cell.locationLabel.text = place.location
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-        //Рейтинг на главном экране
-        
         cell.cosmosView.rating = place.rating
         return cell
     }

@@ -61,16 +61,24 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "showMap" {
+            return
+        }
+        let mapVC = segue.destination as! MapViewController
+        mapVC.place.name = placeName.text!
+        mapVC.place.location = placeLocation.text
+        mapVC.place.type = placeType.text
+        mapVC.place.imageData = placeImage.image?.pngData()
+        
+        
+    }
+    
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
     func savePlace() {
-        let image: UIImage?
-        if imageIsChanged {
-            image = placeImage.image
-        } else {
-            image = UIImage(systemName: "photo")
-        }
+        let image = imageIsChanged ? placeImage.image : UIImage(systemName: "photo")
         let imageData = image?.pngData()
         let newPlace = Places(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: imageData, rating: Double(cosmosView.rating))
         
