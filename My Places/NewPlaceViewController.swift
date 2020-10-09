@@ -62,16 +62,15 @@ class NewPlaceViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
+        guard let identifier = segue.identifier, let mapVC = segue.destination as? MapViewController else {return}
+        mapVC.incomingSegueIdentifier = identifier
+        mapVC.mapViewController = self
+        if identifier == "ShowPlace"{
+            mapVC.place.name = placeName.text!
+            mapVC.place.location = placeLocation.text
+            mapVC.place.type = placeType.text
+            mapVC.place.imageData = placeImage.image?.pngData()
         }
-        let mapVC = segue.destination as! MapViewController
-        mapVC.place.name = placeName.text!
-        mapVC.place.location = placeLocation.text
-        mapVC.place.type = placeType.text
-        mapVC.place.imageData = placeImage.image?.pngData()
-        
-        
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -153,5 +152,11 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
         placeImage.clipsToBounds = true
         imageIsChanged = true
         dismiss(animated: true)
+    }
+}
+
+extension NewPlaceViewController: MapViewControllerDelegate {
+    func getPlaceAddress(_ address: String?){
+        placeLocation.text = address
     }
 }
